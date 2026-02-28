@@ -19,4 +19,4 @@ serde = { version = "1.0.228", features = ["serde_derive"] }
 
 [dev-dependencies]
 snapshot-testing = "0.1.8"
-firefly-rust = { version = "*", default-features = false }
+firefly-rust = { version = "0.12.0", default-features = false }
