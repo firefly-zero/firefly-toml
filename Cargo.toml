@@ -1,11 +1,11 @@
 [package]
-name = "firefly_toml"
+name = "firefly-toml"
 version = "0.1.0"
 edition = "2024"
 rust-version = "1.89.0"
 authors = ["Firefly Zero team"]
-description = "Rust SDK helper macros for making Firefly Zero games"
-repository = "https://github.com/firefly-zero/firefly-rust"
+description = "Rust macro for statically parsing firefly.toml"
+repository = "https://github.com/firefly-zero/firefly-toml"
 license = "MIT"
 keywords = ["gamedev", "firefly-zero"]
 categories = ["game-development", "no-std", "rendering", "api-bindings", "wasm"]
