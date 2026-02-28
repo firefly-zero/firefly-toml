@@ -15,18 +15,14 @@ pub fn import(item: proc_macro::TokenStream) -> proc_macro::TokenStream {
             .parse()
             .unwrap();
     }
-    let Config {
-        cheats,
-        badges,
-        boards,
-    } = match load_config() {
+    let config = match load_config() {
         Ok(value) => value,
         Err(err) => return err,
     };
     let mut s = String::new();
-    write_badges(badges.unwrap_or_default(), &mut s);
-    write_cheats(cheats.unwrap_or_default(), &mut s);
-    write_boards(boards.unwrap_or_default(), &mut s);
+    write_badges(config.badges.unwrap_or_default(), &mut s);
+    write_cheats(config.cheats.unwrap_or_default(), &mut s);
+    write_boards(config.boards.unwrap_or_default(), &mut s);
 
     s.parse().unwrap()
 }

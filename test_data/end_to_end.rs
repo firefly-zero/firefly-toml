@@ -13,6 +13,6 @@ _ => unreachable!(),
 mod boards {
 use firefly_rust::{Peer, add_score, Progress, Board};
 pub fn level_1(peer: Peer, score: i16) -> i16 { add_score(peer, Board(1), score) }
-pub fn level_2(peer: Peer, score: i16) -> i16 { add_score(peer, Board(2), score) }
 pub fn speedrun(peer: Peer, score: i16) -> i16 { add_score(peer, Board(3), score) }
+pub fn level_2(peer: Peer, score: i16) -> i16 { add_score(peer, Board(2), score) }
 }

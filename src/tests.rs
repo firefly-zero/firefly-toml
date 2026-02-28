@@ -11,7 +11,8 @@ fn empty() {
 }
 
 fn run(name: &str) {
-    let input = std::fs::read_to_string(format!("tests/{name}.toml")).unwrap();
+    let input_path = format!("test_data/{name}.toml");
+    let input = std::fs::read_to_string(input_path).unwrap();
     let Config {
         cheats,
         badges,
@@ -21,5 +22,6 @@ fn run(name: &str) {
     write_badges(badges.unwrap_or_default(), &mut s);
     write_cheats(cheats.unwrap_or_default(), &mut s);
     write_boards(boards.unwrap_or_default(), &mut s);
-    snapshot_testing::assert_eq_or_update(s, format!("tests/{name}.rs"));
+    let snapshot_path = format!("test_data/{name}.rs");
+    snapshot_testing::assert_eq_or_update(s, snapshot_path);
 }
