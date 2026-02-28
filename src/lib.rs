@@ -1,3 +1,6 @@
+#![deny(clippy::pedantic)]
+#![allow(clippy::wildcard_imports)]
+
 mod config;
 #[cfg(test)]
 mod tests;
@@ -5,9 +8,10 @@ mod tests;
 use config::*;
 
 #[proc_macro]
+#[expect(clippy::missing_panics_doc)]
 pub fn import(item: proc_macro::TokenStream) -> proc_macro::TokenStream {
     if !item.is_empty() {
-        return r##"compile_error!("firefly_import_toml does not take any arguments");"##
+        return r#"compile_error!("firefly_import_toml does not take any arguments");"#
             .parse()
             .unwrap();
     }

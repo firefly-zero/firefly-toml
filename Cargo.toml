@@ -14,7 +14,7 @@ categories = ["game-development", "no-std", "rendering", "api-bindings", "wasm"]
 proc-macro = true
 
 [dependencies]
-toml = "0.9.8"
+toml = "1.0.3+spec-1.1.0"
 serde = { version = "1.0.228", features = ["serde_derive"] }
 
 [dev-dependencies]

@@ -23,7 +23,7 @@ pub fn write_boards(boards: HashMap<String, BoardConfig>, s: &mut String) {
         )
         .unwrap();
     }
-    s.push_str("}");
+    s.push('}');
 }
 
 pub fn write_cheats(cheats: HashMap<String, i32>, s: &mut String) {
@@ -35,7 +35,7 @@ pub fn write_cheats(cheats: HashMap<String, i32>, s: &mut String) {
         let name = name.replace('-', "_");
         writeln!(s, "{name} = {id},",).unwrap();
     }
-    s.push_str("}");
+    s.push('}');
     writeln!(
         s,
         "impl Cheats {{ fn from_id(id: i32) -> Self {{ match id {{"
@@ -87,7 +87,7 @@ pub fn write_badges(badges: HashMap<String, BadgeConfig>, s: &mut String) {
         )
         .unwrap();
     }
-    s.push_str("}");
+    s.push('}');
 }
 
 #[derive(Deserialize, Debug)]
@@ -105,13 +105,13 @@ pub struct Config {
 pub fn load_config() -> Result<Config, TokenStream> {
     let file = std::fs::read("firefly.toml").map_err(|e| {
         TokenStream::from_str(&format!(
-            r####"compile_error!(r##"could not load firefly.toml: {e}"##);"####
+            r##"compile_error!(r#"could not load firefly.toml: {e}"#);"##
         ))
         .unwrap()
     })?;
     toml::from_slice(&file).map_err(|e| {
         TokenStream::from_str(&format!(
-            r####"compile_error!(r##"firefly.toml is not valid toml: {e}"##);"####
+            r##"compile_error!(r#"firefly.toml is not valid toml: {e}"#);"##
         ))
         .unwrap()
     })

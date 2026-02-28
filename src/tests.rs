@@ -1,4 +1,4 @@
-use crate::{Config, write_badges, write_boards, write_cheats};
+use crate::*;
 
 #[test]
 fn end_to_end() {
@@ -7,7 +7,7 @@ fn end_to_end() {
 
 #[test]
 fn empty() {
-    run("empty")
+    run("empty");
 }
 
 fn run(name: &str) {
