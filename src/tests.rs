@@ -18,6 +18,7 @@ fn run(name: &str) {
     write_badges(config.badges.unwrap_or_default(), &mut s);
     write_cheats(config.cheats.unwrap_or_default(), &mut s);
     write_boards(config.boards.unwrap_or_default(), &mut s);
+    write_palettes(config.palettes.unwrap_or_default(), &mut s);
     let snapshot_path = format!("test_data/{name}.rs");
     snapshot_testing::assert_eq_or_update(s, snapshot_path);
 }
