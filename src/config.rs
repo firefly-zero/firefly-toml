@@ -1,6 +1,6 @@
 use proc_macro::TokenStream;
 use serde::Deserialize;
-use std::collections::HashMap;
+use std::collections::BTreeMap;
 use std::{fmt::Write as _, str::FromStr as _};
 
 #[derive(Deserialize, Debug)]
@@ -9,7 +9,7 @@ pub struct BoardConfig {
     pub name: String,
 }
 
-pub fn write_boards(boards: HashMap<String, BoardConfig>, s: &mut String) {
+pub fn write_boards(boards: BTreeMap<String, BoardConfig>, s: &mut String) {
     if boards.is_empty() {
         return;
     }
@@ -26,7 +26,7 @@ pub fn write_boards(boards: HashMap<String, BoardConfig>, s: &mut String) {
     s.push('}');
 }
 
-pub fn write_cheats(cheats: HashMap<String, i32>, s: &mut String) {
+pub fn write_cheats(cheats: BTreeMap<String, i32>, s: &mut String) {
     if cheats.is_empty() {
         return;
     }
@@ -64,7 +64,7 @@ pub struct BadgeConfig {
     pub steps: Option<u16>,
 }
 
-pub fn write_badges(badges: HashMap<String, BadgeConfig>, s: &mut String) {
+pub fn write_badges(badges: BTreeMap<String, BadgeConfig>, s: &mut String) {
     if badges.is_empty() {
         return;
     }
@@ -93,13 +93,13 @@ pub fn write_badges(badges: HashMap<String, BadgeConfig>, s: &mut String) {
 #[derive(Deserialize, Debug)]
 pub struct Config {
     /// Mapping of cheat commands to their integer representation.
-    pub cheats: Option<HashMap<String, i32>>,
+    pub cheats: Option<BTreeMap<String, i32>>,
 
     /// Mapping of badge IDs to badges.
-    pub badges: Option<HashMap<String, BadgeConfig>>,
+    pub badges: Option<BTreeMap<String, BadgeConfig>>,
 
     /// Mapping of board IDs to boards.
-    pub boards: Option<HashMap<String, BoardConfig>>,
+    pub boards: Option<BTreeMap<String, BoardConfig>>,
 }
 
 pub fn load_config() -> Result<Config, TokenStream> {
