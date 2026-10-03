@@ -33,7 +33,7 @@ pub fn write_cheats(cheats: BTreeMap<String, i32>, s: &mut String) {
     writeln!(s, "enum Cheats {{").unwrap();
     for (name, id) in &cheats {
         let name = name.replace('-', "_");
-        writeln!(s, "{name} = {id},",).unwrap();
+        writeln!(s, "{name} = {id},").unwrap();
     }
     s.push('}');
     writeln!(
@@ -43,7 +43,7 @@ pub fn write_cheats(cheats: BTreeMap<String, i32>, s: &mut String) {
     .unwrap();
     for (name, id) in cheats {
         let name = name.replace('-', "_");
-        writeln!(s, "{id} => Self::{name},",).unwrap();
+        writeln!(s, "{id} => Self::{name},").unwrap();
     }
     writeln!(s, "_ => unreachable!(),").unwrap();
     writeln!(s, "}} }} }}").unwrap();
@@ -127,11 +127,15 @@ pub fn write_palettes(palettes: BTreeMap<String, BTreeMap<u8, u32>>, s: &mut Str
     writeln!(s, "mod palettes {{").unwrap();
     writeln!(s, "use firefly_rust::{{set_color, Color, RGB}};").unwrap();
     for (name, palette) in palettes {
-        writeln!(s, "pub fn {name}() {{",).unwrap();
+        writeln!(s, "pub fn {name}() {{").unwrap();
         for (idx, hex) in palette {
-            let [r, g, b, a] = hex.to_ne_bytes();
-            assert_eq!(a, 0);
-            writeln!(s, "set_color(Color::new({idx}), RGB::new({r}, {g}, {b}));").unwrap();
+            let [red, green, blue, alpha] = hex.to_ne_bytes();
+            assert_eq!(alpha, 0);
+            writeln!(
+                s,
+                "set_color(Color::new({idx}), RGB::new({red}, {green}, {blue}));"
+            )
+            .unwrap();
         }
         writeln!(s, "}}").unwrap();
     }

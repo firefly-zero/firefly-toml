@@ -1,8 +1,8 @@
 [package]
 name = "firefly-toml"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2024"
-rust-version = "1.89.0"
+rust-version = "1.95.0"
 authors = ["Firefly Zero team"]
 description = "Rust macro for statically parsing firefly.toml"
 repository = "https://github.com/firefly-zero/firefly-toml"
@@ -14,9 +14,9 @@ categories = ["game-development", "no-std", "rendering", "api-bindings", "wasm"]
 proc-macro = true
 
 [dependencies]
-toml = "1.0.3+spec-1.1.0"
-serde = { version = "1.0.228", features = ["serde_derive"] }
+toml = "1.0.6"
+serde = { version = "1.0.229", features = ["serde_derive"] }
 
 [dev-dependencies]
 snapshot-testing = "0.1.8"
-firefly-rust = { version = "0.12.0", default-features = false }
+firefly-rust = { version = "0.16.0", default-features = false }
