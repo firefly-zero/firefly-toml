@@ -23,6 +23,7 @@ pub fn import(item: proc_macro::TokenStream) -> proc_macro::TokenStream {
     write_badges(config.badges.unwrap_or_default(), &mut s);
     write_cheats(config.cheats.unwrap_or_default(), &mut s);
     write_boards(config.boards.unwrap_or_default(), &mut s);
+    write_palettes(config.palettes.unwrap_or_default(), &mut s);
 
     s.parse().unwrap()
 }

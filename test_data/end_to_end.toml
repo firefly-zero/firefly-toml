@@ -16,3 +16,21 @@ goto-level = 1
 2 = { name = "level 2", max = 10, time = true }
 
 3 = { name = "speedrun", min = -10000, max = 0 }
+
+[palettes.custom]
+1 = 0x0D0D0D
+2 = 0x999999
+3 = 0xF2F2F2
+4 = 0x141414
+5 = 0x4D0D0D
+6 = 0x5D0D0D
+7 = 0x6D0D0D
+8 = 0x7D0D0D
+9 = 0x8D0D0D
+10 = 0x9D0D0D
+11 = 0xAD0D0D
+12 = 0xBD0D0D
+13 = 0xCD0D0D
+14 = 0xDD0D0D
+15 = 0xED0D0D
+16 = 0x000000

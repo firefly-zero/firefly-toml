@@ -100,6 +100,9 @@ pub struct Config {
 
     /// Mapping of board IDs to boards.
     pub boards: Option<BTreeMap<String, BoardConfig>>,
+
+    /// Custom palettes.
+    pub palettes: Option<BTreeMap<String, BTreeMap<u8, u32>>>,
 }
 
 pub fn load_config() -> Result<Config, TokenStream> {
@@ -115,4 +118,22 @@ pub fn load_config() -> Result<Config, TokenStream> {
         ))
         .unwrap()
     })
+}
+
+pub fn write_palettes(palettes: BTreeMap<String, BTreeMap<u8, u32>>, s: &mut String) {
+    if palettes.is_empty() {
+        return;
+    }
+    writeln!(s, "mod palettes {{").unwrap();
+    writeln!(s, "use firefly_rust::{{set_color, Color, RGB}};").unwrap();
+    for (name, palette) in palettes {
+        writeln!(s, "pub fn {name}() {{",).unwrap();
+        for (idx, hex) in palette {
+            let [r, g, b, a] = hex.to_ne_bytes();
+            assert_eq!(a, 0);
+            writeln!(s, "set_color(Color::new({idx}), RGB::new({r}, {g}, {b}));").unwrap();
+        }
+        writeln!(s, "}}").unwrap();
+    }
+    s.push('}');
 }
